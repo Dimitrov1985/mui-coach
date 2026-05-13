@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --red:   #dc2626;
+  --red2:  #b91c1c;
+  --bg:    #0a0a0a;
+  --bg2:   #111111;
+  --card:  #161616;
+  --line:  #1f1f1f;
+  --text:  #f2f2f2;
+  --muted: #888888;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: var(--red); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
