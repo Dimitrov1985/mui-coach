@@ -10,7 +10,7 @@ export default function About() {
     <section className="about" id="about">
       <div className="container">
         <div className="about__grid">
-          <div className="about__image reveal">
+          <div className="about__image reveal" style={{ position: 'relative', minHeight: 480 }}>
             <Image src="/Mui.jpg" alt="Mui" fill style={{ objectFit: 'cover', objectPosition: 'top' }} />
           </div>
           <div className="reveal">
