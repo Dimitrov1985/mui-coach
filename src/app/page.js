@@ -53,13 +53,14 @@ export default function Page() {
     const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 50)
     window.addEventListener('scroll', onScroll)
 
-    // Reveal on scroll
+    // Reveal on scroll — enable animation only after JS loads
+    document.body.classList.add('js-ready')
     const reveals = document.querySelectorAll('.reveal')
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) }
       })
-    }, { threshold: 0.15 })
+    }, { threshold: 0.1 })
     reveals.forEach((el) => io.observe(el))
 
     // FAQ accordion
