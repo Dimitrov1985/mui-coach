@@ -1,20 +1,22 @@
 'use client'
 import { useEffect } from 'react'
 import { LangProvider } from '../lib/LangContext'
-import Navbar   from '../components/Navbar'
-import Hero     from '../components/Hero'
-import About    from '../components/About'
-import Services from '../components/Services'
-import FAQ      from '../components/FAQ'
-import Contact  from '../components/Contact'
-import Footer   from '../components/Footer'
+import Navbar       from '../components/Navbar'
+import Hero         from '../components/Hero'
+import Marquee      from '../components/Marquee'
+import About        from '../components/About'
+import Services     from '../components/Services'
+import Testimonials from '../components/Testimonials'
+import FAQ          from '../components/FAQ'
+import CTA          from '../components/CTA'
+import Footer       from '../components/Footer'
 
-function ScrollReveal() {
+function Reveal() {
   useEffect(() => {
     const els = document.querySelectorAll('.reveal')
     const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target) } })
-    }, { threshold: 0.1 })
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
+    }, { threshold: 0.15 })
     els.forEach(el => io.observe(el))
     return () => io.disconnect()
   }, [])
@@ -24,14 +26,16 @@ function ScrollReveal() {
 export default function Page() {
   return (
     <LangProvider>
-      <ScrollReveal />
+      <Reveal />
       <Navbar />
       <main>
         <Hero />
+        <Marquee />
         <About />
         <Services />
+        <Testimonials />
         <FAQ />
-        <Contact />
+        <CTA />
       </main>
       <Footer />
     </LangProvider>

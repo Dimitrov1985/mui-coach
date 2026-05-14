@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useLang } from '../lib/LangContext'
 
 export default function Navbar() {
-  const { t, lang, toggle } = useLang()
+  const { lang, toggle } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -14,66 +14,62 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    { href: '#about',    label: t.nav.about },
-    { href: '#services', label: t.nav.services },
-    { href: '#faq',      label: t.nav.faq },
-    { href: '#contact',  label: t.nav.contact },
+    { href: '#about', label: 'About' },
+    { href: '#services', label: 'Services' },
+    { href: '#testimonials', label: 'Reviews' },
+    { href: '#faq', label: 'FAQ' },
   ]
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#080808]/95 backdrop-blur-md border-b border-[#1f1f1f]' : ''}`}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <a href="#" className="font-[family-name:var(--font-anton)] text-2xl tracking-widest">
-          <span className="text-red-600">M</span>UI
-        </a>
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+      padding: scrolled ? '16px var(--pad)' : '24px var(--pad)',
+      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      background: scrolled ? 'rgba(10,10,10,.88)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(20px)' : 'none',
+      borderBottom: scrolled ? '1px solid var(--border)' : 'none',
+      transition: 'all .3s var(--easing)',
+    }}>
+      <a href="#" style={{ fontFamily: 'var(--font-anton)', fontSize: 24, letterSpacing: '.15em' }}>
+        MUI<span style={{ color: 'var(--accent)' }}>.</span>
+      </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map(l => (
-            <a key={l.href} href={l.href}
-              className="font-[family-name:var(--font-barlow-c)] text-xs font-bold tracking-[3px] uppercase text-[#888] hover:text-white transition-colors">
-              {l.label}
-            </a>
-          ))}
-          <button onClick={toggle}
-            className="font-[family-name:var(--font-barlow-c)] text-xs font-bold tracking-[3px] uppercase border border-[#2a2a2a] px-3 py-1.5 text-[#888] hover:border-red-600 hover:text-red-600 transition-all">
-            {lang === 'en' ? 'TH' : 'EN'}
-          </button>
-          <a href="https://line.me/ti/p/~muitrainer" target="_blank" rel="noreferrer"
-            className="font-[family-name:var(--font-barlow-c)] text-xs font-bold tracking-[3px] uppercase bg-red-600 text-white px-5 py-2 hover:bg-red-700 transition-colors">
-            {t.nav.cta}
+      {/* Desktop */}
+      <div style={{ display: 'flex', gap: 40, alignItems: 'center' }} className="nav-desktop">
+        {links.map(l => (
+          <a key={l.href} href={l.href} style={{
+            fontSize: 13, letterSpacing: '.15em', textTransform: 'uppercase',
+            color: 'var(--fg-dim)', transition: 'color .2s', fontFamily: 'var(--font-archivo)',
+          }}
+            onMouseEnter={e => e.target.style.color = 'var(--fg)'}
+            onMouseLeave={e => e.target.style.color = 'var(--fg-dim)'}>
+            {l.label}
           </a>
+        ))}
+        <div style={{ border: '1px solid var(--border)', padding: '8px 14px', fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase' }}>
+          <button onClick={toggle} style={{ padding: '0 4px', color: lang === 'en' ? 'var(--accent)' : 'var(--fg-dim)' }}>EN</button>
+          {' / '}
+          <button onClick={toggle} style={{ padding: '0 4px', color: lang === 'th' ? 'var(--accent)' : 'var(--fg-dim)' }}>TH</button>
         </div>
-
-        {/* Mobile burger */}
-        <button className="md:hidden flex flex-col gap-1.5 p-1" onClick={() => setOpen(o => !o)}>
-          <span className={`block w-6 h-0.5 bg-white transition-all ${open ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all ${open ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all ${open ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
+        <a href="https://line.me/ti/p/~muitrainer" target="_blank" rel="noreferrer"
+          className="btn" style={{ padding: '12px 22px', fontSize: 13 }}>
+          Book Now
+        </a>
       </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-[#080808] border-t border-[#1f1f1f] px-6 py-8 flex flex-col gap-6">
-          {links.map(l => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}
-              className="font-[family-name:var(--font-barlow-c)] text-base font-bold tracking-[3px] uppercase text-white">
-              {l.label}
-            </a>
-          ))}
-          <div className="flex gap-4 pt-2">
-            <button onClick={toggle}
-              className="font-[family-name:var(--font-barlow-c)] text-xs font-bold tracking-[3px] uppercase border border-[#333] px-4 py-2 text-[#888]">
-              {lang === 'en' ? 'TH' : 'EN'}
-            </button>
-            <a href="https://line.me/ti/p/~muitrainer" target="_blank" rel="noreferrer"
-              className="font-[family-name:var(--font-barlow-c)] text-xs font-bold tracking-[3px] uppercase bg-red-600 text-white px-5 py-2">
-              {t.nav.cta}
-            </a>
-          </div>
-        </div>
-      )}
+      {/* Mobile burger */}
+      <button onClick={() => setOpen(o => !o)} style={{ display: 'none', flexDirection: 'column', gap: 5, padding: 8 }} className="nav-burger">
+        <span style={{ display: 'block', width: 26, height: 2, background: 'var(--fg)' }} />
+        <span style={{ display: 'block', width: 26, height: 2, background: 'var(--fg)' }} />
+        <span style={{ display: 'block', width: 26, height: 2, background: 'var(--fg)' }} />
+      </button>
+
+      <style>{`
+        @media (max-width: 880px) {
+          .nav-desktop { display: none !important; }
+          .nav-burger { display: flex !important; }
+        }
+      `}</style>
     </nav>
   )
 }
