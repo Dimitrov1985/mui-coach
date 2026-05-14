@@ -6,7 +6,7 @@ const EN = {
   hero: { line1: 'LET', line2: 'MUI', line3: 'TAKE', line4: 'CHARGE', sig: 'Mui', cardTitle: 'Book Free Consultation', cardText: 'Take charge of your body and reach your personal goals. Personalised coaching for real results.', cardBtn: 'About Me →' },
   about: { tag: 'Meet your trainer', title: 'Built for\nReal Results', p1: 'Certified personal trainer based in Bangkok with 7+ years of experience. I specialise in weight loss, strength training, and body transformation.', p2: 'Every plan is personal. Every session has a purpose. No shortcuts — just consistent, science-backed results.', s1n: '7+', s1l: 'Years Experience', s2n: '150+', s2l: 'Clients Coached', s3n: '3000+', s3l: 'Sessions' },
   services: { t1: 'MY', t2: 'PROGRAMS', sub: 'Three ways to work together. Built around what you need. Message me and we begin.' },
-  cta: { t1: 'READY', t2: 'TO START?', sub: 'Free 20-minute consultation. Talk about your goals, schedule, and whether we're a good fit. No pressure.', btn: 'Message on LINE →' },
+  cta: { t1: 'READY', t2: 'TO START?', sub: "Free 20-minute consultation. Talk about your goals, schedule, and whether we’re a good fit. No pressure.", btn: 'Message on LINE →' },
   footer: { desc: 'Personal training and coaching in Bangkok. Built for serious results.' },
 }
 
