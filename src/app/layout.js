@@ -1,9 +1,4 @@
-import { Anton, Archivo, IBM_Plex_Sans_Thai } from 'next/font/google'
 import './globals.css'
-
-const anton   = Anton({ weight: '400', subsets: ['latin'], variable: '--font-anton' })
-const archivo = Archivo({ weight: ['400','500','700','900'], subsets: ['latin'], variable: '--font-archivo' })
-const thai    = IBM_Plex_Sans_Thai({ weight: ['400','600','700'], subsets: ['thai'], variable: '--font-thai' })
 
 export const metadata = {
   title: 'Mui — Personal Trainer Bangkok',
@@ -12,7 +7,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${anton.variable} ${archivo.variable} ${thai.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;900&family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet" />
+      </head>
       <body>{children}</body>
     </html>
   )

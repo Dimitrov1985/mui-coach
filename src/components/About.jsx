@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import { useLang } from '../lib/LangContext'
 
 export default function About() {
@@ -10,9 +9,10 @@ export default function About() {
     <section className="about" id="about">
       <div className="container">
         <div className="about__grid">
-          <div className="about__image reveal" style={{ position: 'relative', minHeight: 480 }}>
-            <Image src="/Mui.jpg" alt="Mui" fill style={{ objectFit: 'cover', objectPosition: 'top' }} />
-          </div>
+          <div
+            className="about__image reveal"
+            style={{ backgroundImage: 'url("/Mui.jpg")' }}
+          />
           <div className="reveal">
             <div className="eyebrow">{a.label}</div>
             <h2 className="about__title">Built for<br />real results.</h2>
